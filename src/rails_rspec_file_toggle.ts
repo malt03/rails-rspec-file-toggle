@@ -2,6 +2,7 @@
 
 import { window, workspace, WorkspaceConfiguration } from 'vscode';
 import { isString } from 'util';
+import { exists, writeFileSync } from 'fs';
 import ConvertDefinition from './convert_definition';
 
 export default class RailsRspecFileToggle {
@@ -24,8 +25,7 @@ export default class RailsRspecFileToggle {
     const match = filePath.match(regex);
     if (match) {
       const file = ConvertDefinition.convertAppToSpec(match[1]);
-      const appPath = `${rootPath}/${this.rspecDirectory()}/${file}_spec.rb`;
-      workspace.openTextDocument(appPath).then(doc => window.showTextDocument(doc));
+      this.createIfNeededAndOpenFile(`${rootPath}/${this.rspecDirectory()}/${file}_spec.rb`);
       return true;
     }
     return false;
@@ -36,11 +36,17 @@ export default class RailsRspecFileToggle {
     const match = filePath.match(regex);
     if (match) {
       const file = ConvertDefinition.convertSpecToApp(match[1]);
-      const specPath = `${rootPath}/app/${file}.rb`;
-      workspace.openTextDocument(specPath).then(doc => window.showTextDocument(doc));
+      this.createIfNeededAndOpenFile(`${rootPath}/app/${file}.rb`);
       return true;
     }
     return false;
+  }
+
+  createIfNeededAndOpenFile(filePath: string) {
+    exists(filePath, (exists) => {
+      if (!exists) { writeFileSync(filePath, ''); }
+      workspace.openTextDocument(filePath).then(doc => window.showTextDocument(doc));
+    });
   }
 
   rspecDirectory(): string {
