@@ -16,6 +16,7 @@ export default class ConvertDefinition {
 
   private convert(file: string, fromDirectory: string, toDirectory: string, fromSuffix: string | undefined, toSuffix: string | undefined) {
     const directoryRegex = new RegExp(`^${fromDirectory}/`);
+    if (!file.match(directoryRegex)) { return file; }
     file = file.replace(directoryRegex, `${toDirectory}/`);
     if (isString(fromSuffix) && isString(toSuffix)) {
       if (fromSuffix === '') {
