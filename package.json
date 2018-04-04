@@ -1,0 +1,68 @@
+{
+    "name": "rails-rspec-file-toggle",
+    "displayName": "rails-rspec-file-toggle",
+    "description": "In rails project with rspec, toggle between spec and tested file.",
+    "version": "0.0.1",
+    "publisher": "malt03",
+    "engines": {
+        "vscode": "^1.21.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "keywords": [
+        "rails",
+        "Ruby on Rails",
+        "rspec",
+        "toggle",
+        "test",
+        "TDD"
+    ],
+    "activationEvents": [
+        "onCommand:extension.railsRspecFileToggle"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "configuration":{
+            "title": "Rails Rspec File Toggle Configuration",
+            "properties": {
+                "railsRspecFileToggle.convertDefinition": {
+                    "default": [
+                        {
+                            "app_directory": "controllers",
+                            "spec_directory": "requests",
+                            "app_suffix": "_controller",
+                            "spec_suffix": ""
+                        }
+                    ],
+                    "type": "array"
+                },
+                "railsRspecFileToggle.rspecDirectory": {
+                    "default": "spec",
+                    "description": "rspec directory name.",
+                    "type": "string"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.railsRspecFileToggle",
+                "title": "Rails Rspec File Toggle"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
