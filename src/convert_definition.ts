@@ -1,6 +1,6 @@
 'use strict';
 
-import { workspace, window } from "vscode";
+import { workspace } from "vscode";
 import { isString } from "util";
 
 export default class ConvertDefinition {
