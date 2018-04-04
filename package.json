@@ -35,6 +35,7 @@
                             "spec_suffix": ""
                         }
                     ],
+                    "description": "convert app directory path `app/${app_directory}/**/*${app_suffix}.rb` to spec path `spec/${spec_directory}/**/*${spec_suffix}_spec.rb`.",
                     "type": "array"
                 },
                 "railsRspecFileToggle.rspecDirectory": {
