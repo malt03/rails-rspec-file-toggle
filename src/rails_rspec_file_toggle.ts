@@ -2,9 +2,10 @@
 
 import { window, workspace } from 'vscode';
 import { isString } from 'util';
-import { exists, writeFileSync } from 'fs';
 import ConvertDefinition from './convert_definition';
 import Configuration from './configuration';
+import { mkdirpSync, existsSync, writeFileSync } from 'fs-extra';
+import { dirname } from 'path';
 
 export default class RailsRspecFileToggle {
   toggle() {
@@ -39,10 +40,12 @@ export default class RailsRspecFileToggle {
   }
 
   private createIfNeededAndOpenFile(filePath: string) {
-    exists(filePath, (exists) => {
-      if (!exists) { writeFileSync(filePath, ''); }
-      workspace.openTextDocument(filePath).then(doc => window.showTextDocument(doc));
-    });
+    if (!existsSync(filePath)) {
+      const dirPath = dirname(filePath);
+      if (!existsSync(filePath)) { mkdirpSync(dirPath); }
+      writeFileSync(filePath, '');
+    }
+    workspace.openTextDocument(filePath).then(doc => window.showTextDocument(doc));
   }
 
   private retrieveFilePath(): string | undefined {
