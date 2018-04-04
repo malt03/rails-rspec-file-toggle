@@ -17,12 +17,11 @@ export default class ConvertDefinition {
   private convert(file: string, fromDirectory: string, toDirectory: string, fromSuffix: string | undefined, toSuffix: string | undefined) {
     const directoryRegex = new RegExp(`^${fromDirectory}/`);
     file = file.replace(directoryRegex, `${toDirectory}/`);
-    window.showInformationMessage(file + ',' + fromDirectory + ',' + toDirectory);
     if (isString(fromSuffix) && isString(toSuffix)) {
       if (fromSuffix === '') {
         file += toSuffix;
       } else {
-        const suffixRegex = new RegExp(`^${fromDirectory}$`);
+        const suffixRegex = new RegExp(`${fromSuffix}$`);
         file = file.replace(suffixRegex, toSuffix);
       }
     }
