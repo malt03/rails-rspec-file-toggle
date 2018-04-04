@@ -10,6 +10,10 @@
     "categories": [
         "Other"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/malt03/rails-rspec-file-toggle.git"
+    },
     "keywords": [
         "rails",
         "Ruby on Rails",
