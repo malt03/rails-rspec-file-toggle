@@ -1,7 +1,7 @@
 'use strict';
 
-import { workspace } from "vscode";
 import { isString } from "util";
+import Configuration from "./configuration";
 
 export default class ConvertDefinition {
   private constructor(private appDirectory: string, private specDirectory: string, private appSuffix: string | undefined, private specSuffix: string | undefined) {}
@@ -45,8 +45,9 @@ export default class ConvertDefinition {
   private static get all(): ConvertDefinition[] {
     if (this._all) { return this._all; }
 
-    const objects = workspace.getConfiguration('railsRspecFileToggle').get<{ [key: string]: string }[]>('convertDefinition') || new Array<{ [key: string]: string }>(0);
-    this._all = objects.map((object) => new ConvertDefinition(object['app_directory'] || '', object['spec_directory'] || '', object['app_suffix'], object['spec_suffix']));
+    this._all = Configuration.shared.getConvertDefinition().map(
+      (object) => new ConvertDefinition(object['app_directory'] || '', object['spec_directory'] || '', object['app_suffix'], object['spec_suffix'])
+    );
     return this._all;
   }
 
