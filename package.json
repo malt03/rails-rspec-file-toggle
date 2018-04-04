@@ -23,7 +23,7 @@
     ],
     "main": "./out/extension",
     "contributes": {
-        "configuration":{
+        "configuration": {
             "title": "Rails Rspec File Toggle Configuration",
             "properties": {
                 "railsRspecFileToggle.convertDefinition": {
