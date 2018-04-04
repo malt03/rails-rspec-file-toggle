@@ -49,6 +49,12 @@
                 "command": "extension.railsRspecFileToggle",
                 "title": "Rails Rspec File Toggle"
             }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.railsRspecFileToggle",
+                "key": "ctrl+alt+r"
+            }
         ]
     },
     "scripts": {
