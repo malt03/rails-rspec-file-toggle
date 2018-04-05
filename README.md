@@ -15,7 +15,7 @@ In rails project with rspec, toggle between spec and tested file.
 ]
 ```
 
-![screenshot](https://github.com/malt03/rails-rspec-file-toggle/blob/master/README/rails-rspec-file-toggle.gif?raw=true)
+![screenshot](https://github.com/malt03/rails-rspec-file-toggle/blob/images/rails-rspec-file-toggle.gif?raw=true)
 
 ## Extension Settings
 
