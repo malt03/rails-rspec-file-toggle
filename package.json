@@ -2,7 +2,7 @@
     "name": "rails-rspec-file-toggle",
     "displayName": "rails-rspec-file-toggle",
     "description": "In rails project with rspec, toggle between spec and tested file.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "malt03",
     "engines": {
         "vscode": "^1.21.0"
