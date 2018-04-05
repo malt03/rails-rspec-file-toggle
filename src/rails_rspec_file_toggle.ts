@@ -1,23 +1,20 @@
-'use strict';
-
 import { window, workspace } from 'vscode';
-import { isString } from 'util';
-import ConvertDefinition from './convert_definition';
-import Configuration from './configuration';
 import { mkdirpSync, existsSync, writeFileSync } from 'fs-extra';
 import { dirname } from 'path';
+import ConvertDefinition from './convert_definition';
+import Configuration from './configuration';
 
 export default class RailsRspecFileToggle {
   toggle() {
     const filePath = this.retrieveFilePath();
     const rootPath = workspace.rootPath;
-    if (isString(filePath) && isString(rootPath)) {
+    if (filePath !== undefined && rootPath !== undefined) {
       const didOpenSpec = this.openSpecFromApp(filePath, rootPath);
       if (!didOpenSpec) { this.openAppFromSpec(filePath, rootPath); }
     }
   }
 
-  private openSpecFromApp(filePath: string, rootPath: string): boolean {
+  private openSpecFromApp(filePath: string, rootPath: string) {
     const regex = new RegExp(`^${rootPath}/app/(.*)\.rb$`);
     const match = filePath.match(regex);
     if (match) {
@@ -28,7 +25,7 @@ export default class RailsRspecFileToggle {
     return false;
   }
 
-  private openAppFromSpec(filePath: string, rootPath: string): boolean {
+  private openAppFromSpec(filePath: string, rootPath: string) {
     const regex = new RegExp(`^${rootPath}/${Configuration.shared.getRspecDirectory()}/(.*)_spec\.rb$`);
     const match = filePath.match(regex);
     if (match) {
@@ -48,10 +45,8 @@ export default class RailsRspecFileToggle {
     workspace.openTextDocument(filePath).then(doc => window.showTextDocument(doc));
   }
 
-  private retrieveFilePath(): string | undefined {
-    if (!window.activeTextEditor) {
-      return;
-    }
+  private retrieveFilePath() {
+    if (!window.activeTextEditor) { return; }
     return window.activeTextEditor.document.fileName;
   }
 }

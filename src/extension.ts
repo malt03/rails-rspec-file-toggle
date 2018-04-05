@@ -1,12 +1,10 @@
-'use strict';
-
-import * as vscode from 'vscode';
+import { commands, window, ExtensionContext } from 'vscode';
 import RailsRspecFileToggle from './rails_rspec_file_toggle';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand('extension.railsRspecFileToggle', () => {
+export function activate(context: ExtensionContext) {
+  const disposable = commands.registerCommand('extension.railsRspecFileToggle', () => {
     const toggle = new RailsRspecFileToggle();
     toggle.toggle();
   });
@@ -16,5 +14,5 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {
-  vscode.window.showInformationMessage('deactivated');
+  window.showInformationMessage('deactivated');
 }
