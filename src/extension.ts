@@ -13,6 +13,4 @@ export function activate(context: ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {
-  window.showInformationMessage('deactivated');
-}
+export function deactivate() {}

@@ -1,82 +1,95 @@
 {
-    "name": "rails-rspec-file-toggle",
-    "displayName": "rails-rspec-file-toggle",
-    "description": "In rails project with rspec, toggle between spec and tested file.",
-    "version": "0.0.2",
-    "publisher": "malt03",
-    "engines": {
-        "vscode": "^1.21.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/malt03/rails-rspec-file-toggle.git"
-    },
-    "keywords": [
-        "rails",
-        "Ruby on Rails",
-        "rspec",
-        "toggle",
-        "TDD"
-    ],
-    "activationEvents": [
-        "onCommand:extension.railsRspecFileToggle"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "configuration": {
-            "title": "Rails Rspec File Toggle Configuration",
-            "properties": {
-                "railsRspecFileToggle.convertDefinition": {
-                    "default": [
-                        {
-                            "app_directory": "controllers",
-                            "spec_directory": "requests",
-                            "app_suffix": "_controller",
-                            "spec_suffix": ""
-                        }
-                    ],
-                    "description": "convert app directory path `app/${app_directory}/**/*${app_suffix}.rb` to spec path `spec/${spec_directory}/**/*${spec_suffix}_spec.rb`.",
-                    "type": "array"
-                },
-                "railsRspecFileToggle.rspecDirectory": {
-                    "default": "spec",
-                    "description": "rspec directory name.",
-                    "type": "string"
-                }
+  "name": "rails-rspec-file-toggle",
+  "displayName": "rails-rspec-file-toggle",
+  "description": "In rails project with rspec, toggle between spec and tested file.",
+  "version": "0.0.3",
+  "publisher": "malt03",
+  "engines": {
+    "vscode": "^1.62.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/malt03/rails-rspec-file-toggle.git"
+  },
+  "keywords": [
+    "rails",
+    "Ruby on Rails",
+    "rspec",
+    "toggle",
+    "TDD"
+  ],
+  "activationEvents": [
+    "onCommand:extension.railsRspecFileToggle"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Rails Rspec File Toggle Configuration",
+      "properties": {
+        "railsRspecFileToggle.convertDefinition": {
+          "default": [
+            {
+              "app_directory": "controllers",
+              "spec_directory": "requests",
+              "app_suffix": "_controller",
+              "spec_suffix": ""
             }
+          ],
+          "description": "convert app directory path `app/${app_directory}/**/*${app_suffix}.rb` to spec path `spec/${spec_directory}/**/*${spec_suffix}_spec.rb`.",
+          "type": "array"
         },
-        "commands": [
-            {
-                "command": "extension.railsRspecFileToggle",
-                "title": "Rails Rspec File Toggle"
-            }
-        ],
-        "keybindings": [
-            {
-                "command": "extension.railsRspecFileToggle",
-                "key": "ctrl+alt+r"
-            }
-        ]
+        "railsRspecFileToggle.rspecDirectory": {
+          "default": "spec",
+          "description": "rspec directory name.",
+          "type": "string"
+        }
+      }
     },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "@types/fs-extra": "^5.0.1",
-        "@types/mocha": "^2.2.42",
-        "@types/node": "^7.0.43",
-        "tslint": "^5.8.0",
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6"
-    },
-    "dependencies": {
-        "fs-extra": "^5.0.0"
-    }
+    "commands": [
+      {
+        "command": "extension.railsRspecFileToggle",
+        "title": "Rails Rspec File Toggle"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.railsRspecFileToggle",
+        "key": "ctrl+alt+r"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.62.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "@vscode/test-electron": "^1.6.2",
+    "eslint": "^8.1.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.4",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  }
 }
