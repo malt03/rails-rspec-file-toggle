@@ -1,6 +1,6 @@
 {
-  "name": "rails-rspec-file-toggle-new",
-  "displayName": "rails-rspec-file-toggle",
+  "name": "rails-rspec-file-toggler",
+  "displayName": "rails-rspec-file-toggler",
   "description": "In rails project with rspec, toggle between spec and tested file.",
   "version": "1.0.0",
   "publisher": "malt-03",
