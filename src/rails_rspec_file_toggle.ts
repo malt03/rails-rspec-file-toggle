@@ -15,7 +15,7 @@ export default class RailsRspecFileToggle {
   }
 
   private openSpecFromApp(filePath: string, rootPath: string) {
-    const regex = new RegExp(`^${rootPath}/app/(.*)\.rb$`);
+    const regex = new RegExp(`^${rootPath}/app/(.*)\\.rb$`);
     const match = filePath.match(regex);
     if (match) {
       const file = ConvertDefinition.convertAppToSpec(match[1]);
@@ -26,7 +26,7 @@ export default class RailsRspecFileToggle {
   }
 
   private openAppFromSpec(filePath: string, rootPath: string) {
-    const regex = new RegExp(`^${rootPath}/${Configuration.shared.getRspecDirectory()}/(.*)_spec\.rb$`);
+    const regex = new RegExp(`^${rootPath}/${Configuration.shared.getRspecDirectory()}/(.*)_spec\\.rb$`);
     const match = filePath.match(regex);
     if (match) {
       const file = ConvertDefinition.convertSpecToApp(match[1]);
