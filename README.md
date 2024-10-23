@@ -3,6 +3,11 @@
 This is an extension for Visual Studio Code.
 In rails project with rspec, toggle between spec and tested file.
 
+> [!WARNING]
+> Since I no longer have access to my old Microsoft account, I am publishing the new version using the new org.  
+> [Here](https://marketplace.visualstudio.com/items?itemName=malt-03.rails-rspec-file-toggler) is the URL for the new version.  
+> I have submitted a removal request to Microsoft for the old org and extensions.
+
 ## Features
 
 ```json
